@@ -2,6 +2,8 @@ package ai.turintech.catalog.domain;
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -17,7 +19,7 @@ public class FloatParameterRange implements Serializable {
 
     @Id
     @Column("id")
-    private Long id;
+    private UUID id;
 
     @NotNull(message = "must not be null")
     @Column("is_left_open")
@@ -28,26 +30,47 @@ public class FloatParameterRange implements Serializable {
     private Boolean isRightOpen;
 
     @NotNull(message = "must not be null")
-    @Column("jhi_left")
-    private Integer left;
+    @Column("left")
+    private Double left;
 
     @NotNull(message = "must not be null")
-    @Column("jhi_right")
-    private Integer right;
+    @Column("right")
+    private Double right;
+
+    @NotNull(message = "must not be null")
+    @Column("parameter_type_definition_id")
+    private ParameterTypeDefinition parameterTypeDefinition;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
-        return this.id;
-    }
 
-    public FloatParameterRange id(Long id) {
+    public FloatParameterRange id(UUID id) {
         this.setId(id);
         return this;
     }
 
-    public void setId(Long id) {
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
         this.id = id;
+    }
+
+    public void setLeft(Double left) {
+        this.left = left;
+    }
+
+    public void setRight(Double right) {
+        this.right = right;
+    }
+
+    public Double getLeft() {
+        return this.left;
+    }
+
+    public Double getRight() {
+        return this.right;
     }
 
     public Boolean getIsLeftOpen() {
@@ -76,32 +99,13 @@ public class FloatParameterRange implements Serializable {
         this.isRightOpen = isRightOpen;
     }
 
-    public Integer getLeft() {
-        return this.left;
+    public ParameterTypeDefinition getParameterTypeDefinition() {
+        return parameterTypeDefinition;
     }
 
-    public FloatParameterRange left(Integer left) {
-        this.setLeft(left);
-        return this;
+    public void setParameterTypeDefinition(ParameterTypeDefinition parameterTypeDefinition) {
+        this.parameterTypeDefinition = parameterTypeDefinition;
     }
-
-    public void setLeft(Integer left) {
-        this.left = left;
-    }
-
-    public Integer getRight() {
-        return this.right;
-    }
-
-    public FloatParameterRange right(Integer right) {
-        this.setRight(right);
-        return this;
-    }
-
-    public void setRight(Integer right) {
-        this.right = right;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

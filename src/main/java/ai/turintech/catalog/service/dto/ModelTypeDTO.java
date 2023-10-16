@@ -16,8 +16,6 @@ public class ModelTypeDTO implements Serializable {
     @NotNull(message = "must not be null")
     private String name;
 
-    private ModelDTO models;
-
     public UUID getId() {
         return id;
     }
@@ -32,14 +30,6 @@ public class ModelTypeDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ModelDTO getModels() {
-        return models;
-    }
-
-    public void setModels(ModelDTO models) {
-        this.models = models;
     }
 
     @Override
@@ -69,7 +59,6 @@ public class ModelTypeDTO implements Serializable {
         return "ModelTypeDTO{" +
             "id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", models=" + getModels() +
             "}";
     }
 }

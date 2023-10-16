@@ -16,9 +16,6 @@ public class ParameterTypeDTO implements Serializable {
     @NotNull(message = "must not be null")
     private String name;
 
-    private ParameterDTO parameter;
-
-    private ParameterTypeDefinitionDTO parameterTypeDefinition;
 
     public UUID getId() {
         return id;
@@ -36,21 +33,6 @@ public class ParameterTypeDTO implements Serializable {
         this.name = name;
     }
 
-    public ParameterDTO getParameter() {
-        return parameter;
-    }
-
-    public void setParameter(ParameterDTO parameter) {
-        this.parameter = parameter;
-    }
-
-    public ParameterTypeDefinitionDTO getParameterTypeDefinition() {
-        return parameterTypeDefinition;
-    }
-
-    public void setParameterTypeDefinition(ParameterTypeDefinitionDTO parameterTypeDefinition) {
-        this.parameterTypeDefinition = parameterTypeDefinition;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -79,8 +61,6 @@ public class ParameterTypeDTO implements Serializable {
         return "ParameterTypeDTO{" +
             "id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", parameter=" + getParameter() +
-            ", parameterTypeDefinition=" + getParameterTypeDefinition() +
             "}";
     }
 }

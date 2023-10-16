@@ -11,7 +11,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface ModelEnsembleTypeMapper extends EntityMapper<ModelEnsembleTypeDTO, ModelEnsembleType> {
-    @Mapping(target = "models", source = "models", qualifiedByName = "modelId")
     ModelEnsembleTypeDTO toDto(ModelEnsembleType s);
 
     @Named("modelId")

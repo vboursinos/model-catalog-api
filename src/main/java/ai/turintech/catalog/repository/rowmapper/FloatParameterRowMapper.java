@@ -1,6 +1,7 @@
 package ai.turintech.catalog.repository.rowmapper;
 
 import ai.turintech.catalog.domain.FloatParameter;
+import ai.turintech.catalog.domain.ParameterTypeDefinition;
 import io.r2dbc.spi.Row;
 import java.util.function.BiFunction;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ public class FloatParameterRowMapper implements BiFunction<Row, String, FloatPar
     @Override
     public FloatParameter apply(Row row, String prefix) {
         FloatParameter entity = new FloatParameter();
-        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
+//        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
+        entity.setParameterTypeDefinition(converter.fromRow(row, prefix + "_parameter_type_definition_id", ParameterTypeDefinition.class));
         entity.setDefaultValue(converter.fromRow(row, prefix + "_default_value", Float.class));
         return entity;
     }

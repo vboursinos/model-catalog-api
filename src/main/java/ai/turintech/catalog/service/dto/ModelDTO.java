@@ -1,5 +1,6 @@
 package ai.turintech.catalog.service.dto;
 
+import ai.turintech.catalog.domain.Parameter;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -31,13 +32,13 @@ public class ModelDTO implements Serializable {
     private Boolean enabled;
 
     @NotNull(message = "must not be null")
-    private Boolean decistionTree;
+    private Boolean decisionTree;
 
     private Set<ModelGroupTypeDTO> groups = new HashSet<>();
 
     private Set<MetricDTO> incompatibleMetrics = new HashSet<>();
 
-    private ParameterDTO parameters;
+    private Set<Parameter> parameters;
 
     public UUID getId() {
         return id;
@@ -95,12 +96,12 @@ public class ModelDTO implements Serializable {
         this.enabled = enabled;
     }
 
-    public Boolean getDecistionTree() {
-        return decistionTree;
+    public Boolean getDecisionTree() {
+        return decisionTree;
     }
 
-    public void setDecistionTree(Boolean decistionTree) {
-        this.decistionTree = decistionTree;
+    public void setDecisionTree(Boolean decisionTree) {
+        this.decisionTree = decisionTree;
     }
 
     public Set<ModelGroupTypeDTO> getGroups() {
@@ -119,11 +120,11 @@ public class ModelDTO implements Serializable {
         this.incompatibleMetrics = incompatibleMetrics;
     }
 
-    public ParameterDTO getParameters() {
+    public Set<Parameter> getParameters() {
         return parameters;
     }
 
-    public void setParameters(ParameterDTO parameters) {
+    public void setParameters(Set<Parameter> parameters) {
         this.parameters = parameters;
     }
 
@@ -159,7 +160,7 @@ public class ModelDTO implements Serializable {
             ", advantages='" + getAdvantages() + "'" +
             ", disadvantages='" + getDisadvantages() + "'" +
             ", enabled='" + getEnabled() + "'" +
-            ", decistionTree='" + getDecistionTree() + "'" +
+            ", decisionTree='" + getDecisionTree() + "'" +
             ", groups=" + getGroups() +
             ", incompatibleMetrics=" + getIncompatibleMetrics() +
             ", parameters=" + getParameters() +

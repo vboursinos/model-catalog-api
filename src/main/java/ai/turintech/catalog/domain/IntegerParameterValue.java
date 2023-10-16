@@ -2,6 +2,8 @@ package ai.turintech.catalog.domain;
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -17,31 +19,35 @@ public class IntegerParameterValue implements Serializable {
 
     @Id
     @Column("id")
-    private Long id;
+    private UUID id;
 
     @NotNull(message = "must not be null")
-    @Column("jhi_left")
+    @Column("left")
     private Integer left;
 
     @NotNull(message = "must not be null")
-    @Column("jhi_right")
+    @Column("right")
     private Integer right;
+
+    @NotNull(message = "must not be null")
+    @Column("parameter_type_definition_id")
+    private ParameterTypeDefinition parameterTypeDefinition;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
-        return this.id;
+
+    public UUID getId() {
+        return id;
     }
 
-    public IntegerParameterValue id(Long id) {
-        this.setId(id);
-        return this;
-    }
-
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
+    public IntegerParameterValue id(UUID id) {
+        this.setId(id);
+        return this;
+    }
     public Integer getLeft() {
         return this.left;
     }
@@ -68,6 +74,13 @@ public class IntegerParameterValue implements Serializable {
         this.right = right;
     }
 
+    public ParameterTypeDefinition getParameterTypeDefinition() {
+        return parameterTypeDefinition;
+    }
+
+    public void setParameterTypeDefinition(ParameterTypeDefinition parameterTypeDefinition) {
+        this.parameterTypeDefinition = parameterTypeDefinition;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

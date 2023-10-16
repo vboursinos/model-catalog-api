@@ -121,7 +121,7 @@ class ModelRepositoryInternalImpl extends SimpleR2dbcRepository<Model, UUID> imp
 
     private Model process(Row row, RowMetadata metadata) {
         Model entity = modelMapper.apply(row, "e");
-        entity.setParameters(parameterMapper.apply(row, "parameters"));
+//        entity.setParameters(parameterMapper.apply(row, "parameters"));
         return entity;
     }
 

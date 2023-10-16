@@ -1,6 +1,7 @@
 package ai.turintech.catalog.repository.rowmapper;
 
 import ai.turintech.catalog.domain.BooleanParameter;
+import ai.turintech.catalog.domain.ParameterTypeDefinition;
 import io.r2dbc.spi.Row;
 import java.util.function.BiFunction;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ public class BooleanParameterRowMapper implements BiFunction<Row, String, Boolea
     @Override
     public BooleanParameter apply(Row row, String prefix) {
         BooleanParameter entity = new BooleanParameter();
-        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
+        entity.setParameterTypeDefinition(converter.fromRow(row, prefix + "_parameter_type_definition_id", ParameterTypeDefinition.class));
+//        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setDefaultValue(converter.fromRow(row, prefix + "_default_value", Boolean.class));
         return entity;
     }

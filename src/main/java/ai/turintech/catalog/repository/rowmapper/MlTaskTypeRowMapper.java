@@ -27,7 +27,6 @@ public class MlTaskTypeRowMapper implements BiFunction<Row, String, MlTaskType> 
         MlTaskType entity = new MlTaskType();
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
-        entity.setModelsId(converter.fromRow(row, prefix + "_models_id", UUID.class));
         return entity;
     }
 }

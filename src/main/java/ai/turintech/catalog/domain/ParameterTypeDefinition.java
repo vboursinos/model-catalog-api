@@ -33,13 +33,17 @@ public class ParameterTypeDefinition implements Serializable, Persistable<UUID> 
     @Transient
     private boolean isPersisted;
 
-    @Transient
-    @JsonIgnoreProperties(value = { "models", "types", "distributions", "definitions" }, allowSetters = true)
-    private Set<Parameter> parameters = new HashSet<>();
+    @NotNull(message = "must not be null")
+    @Column("parameter_id")
+    private Parameter parameter;
 
-    @Transient
-    @JsonIgnoreProperties(value = { "parameter", "parameterTypeDefinition" }, allowSetters = true)
-    private Set<ParameterType> types = new HashSet<>();
+    @NotNull(message = "must not be null")
+    @Column("parameter_type_id")
+    private ParameterType parameterType;
+
+    @NotNull(message = "must not be null")
+    @Column("parameter_distribution_type_id")
+    private ParameterDistributionType parameterDistributionType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -80,66 +84,28 @@ public class ParameterTypeDefinition implements Serializable, Persistable<UUID> 
         return this;
     }
 
-    public Set<Parameter> getParameters() {
-        return this.parameters;
+    public Parameter getParameter() {
+        return parameter;
     }
 
-    public void setParameters(Set<Parameter> parameters) {
-        if (this.parameters != null) {
-            this.parameters.forEach(i -> i.setDefinitions(null));
-        }
-        if (parameters != null) {
-            parameters.forEach(i -> i.setDefinitions(this));
-        }
-        this.parameters = parameters;
+    public void setParameter(Parameter parameter) {
+        this.parameter = parameter;
     }
 
-    public ParameterTypeDefinition parameters(Set<Parameter> parameters) {
-        this.setParameters(parameters);
-        return this;
+    public ParameterType getParameterType() {
+        return parameterType;
     }
 
-    public ParameterTypeDefinition addParameter(Parameter parameter) {
-        this.parameters.add(parameter);
-        parameter.setDefinitions(this);
-        return this;
+    public void setParameterType(ParameterType parameterType) {
+        this.parameterType = parameterType;
     }
 
-    public ParameterTypeDefinition removeParameter(Parameter parameter) {
-        this.parameters.remove(parameter);
-        parameter.setDefinitions(null);
-        return this;
+    public ParameterDistributionType getParameterDistributionType() {
+        return parameterDistributionType;
     }
 
-    public Set<ParameterType> getTypes() {
-        return this.types;
-    }
-
-    public void setTypes(Set<ParameterType> parameterTypes) {
-        if (this.types != null) {
-            this.types.forEach(i -> i.setParameterTypeDefinition(null));
-        }
-        if (parameterTypes != null) {
-            parameterTypes.forEach(i -> i.setParameterTypeDefinition(this));
-        }
-        this.types = parameterTypes;
-    }
-
-    public ParameterTypeDefinition types(Set<ParameterType> parameterTypes) {
-        this.setTypes(parameterTypes);
-        return this;
-    }
-
-    public ParameterTypeDefinition addType(ParameterType parameterType) {
-        this.types.add(parameterType);
-        parameterType.setParameterTypeDefinition(this);
-        return this;
-    }
-
-    public ParameterTypeDefinition removeType(ParameterType parameterType) {
-        this.types.remove(parameterType);
-        parameterType.setParameterTypeDefinition(null);
-        return this;
+    public void setParameterDistributionType(ParameterDistributionType parameterDistributionType) {
+        this.parameterDistributionType = parameterDistributionType;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

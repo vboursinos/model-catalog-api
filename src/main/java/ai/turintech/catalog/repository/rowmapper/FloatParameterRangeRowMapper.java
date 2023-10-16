@@ -2,6 +2,8 @@ package ai.turintech.catalog.repository.rowmapper;
 
 import ai.turintech.catalog.domain.FloatParameterRange;
 import io.r2dbc.spi.Row;
+
+import java.util.UUID;
 import java.util.function.BiFunction;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,11 @@ public class FloatParameterRangeRowMapper implements BiFunction<Row, String, Flo
     @Override
     public FloatParameterRange apply(Row row, String prefix) {
         FloatParameterRange entity = new FloatParameterRange();
-        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
+        entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setIsLeftOpen(converter.fromRow(row, prefix + "_is_left_open", Boolean.class));
         entity.setIsRightOpen(converter.fromRow(row, prefix + "_is_right_open", Boolean.class));
-        entity.setLeft(converter.fromRow(row, prefix + "_jhi_left", Integer.class));
-        entity.setRight(converter.fromRow(row, prefix + "_jhi_right", Integer.class));
+        entity.setLeft(converter.fromRow(row, prefix + "_left", Double.class));
+        entity.setRight(converter.fromRow(row, prefix + "_right", Double.class));
         return entity;
     }
 }

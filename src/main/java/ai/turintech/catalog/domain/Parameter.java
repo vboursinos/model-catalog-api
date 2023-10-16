@@ -27,6 +27,10 @@ public class Parameter implements Serializable, Persistable<UUID> {
     private UUID id;
 
     @NotNull(message = "must not be null")
+    @Column("model_id")
+    private Model model;
+
+    @NotNull(message = "must not be null")
     @Column("name")
     private String name;
 
@@ -38,8 +42,8 @@ public class Parameter implements Serializable, Persistable<UUID> {
     private String description;
 
     @NotNull(message = "must not be null")
-    @Column("enbled")
-    private Boolean enbled;
+    @Column("enabled")
+    private Boolean enabled;
 
     @NotNull(message = "must not be null")
     @Column("fixed_value")
@@ -52,27 +56,10 @@ public class Parameter implements Serializable, Persistable<UUID> {
     @Transient
     private boolean isPersisted;
 
-    @Transient
-    @JsonIgnoreProperties(
-        value = { "mlTasks", "structures", "types", "familyTypes", "ensembleTypes", "groups", "incompatibleMetrics", "parameters" },
-        allowSetters = true
-    )
-    private Set<Model> models = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "parameter", "parameterTypeDefinition" }, allowSetters = true)
-    private Set<ParameterType> types = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "parameter" }, allowSetters = true)
-    private Set<ParameterDistributionType> distributions = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "parameters", "types" }, allowSetters = true)
-    private ParameterTypeDefinition definitions;
-
-    @Column("definitions_id")
-    private UUID definitionsId;
+    private Set<ParameterTypeDefinition> definitions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -128,17 +115,17 @@ public class Parameter implements Serializable, Persistable<UUID> {
         this.description = description;
     }
 
-    public Boolean getEnbled() {
-        return this.enbled;
+    public Boolean getEnabled() {
+        return this.enabled;
     }
 
-    public Parameter enbled(Boolean enbled) {
-        this.setEnbled(enbled);
+    public Parameter enabled(Boolean enabled) {
+        this.setEnabled(enabled);
         return this;
     }
 
-    public void setEnbled(Boolean enbled) {
-        this.enbled = enbled;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Boolean getFixedValue() {
@@ -178,122 +165,23 @@ public class Parameter implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Set<Model> getModels() {
-        return this.models;
+    public Model getModel() {
+        return model;
     }
 
-    public void setModels(Set<Model> models) {
-        if (this.models != null) {
-            this.models.forEach(i -> i.setParameters(null));
-        }
-        if (models != null) {
-            models.forEach(i -> i.setParameters(this));
-        }
-        this.models = models;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
-    public Parameter models(Set<Model> models) {
-        this.setModels(models);
-        return this;
+    public Set<ParameterTypeDefinition> getDefinitions() {
+        return definitions;
     }
 
-    public Parameter addModel(Model model) {
-        this.models.add(model);
-        model.setParameters(this);
-        return this;
+    public void setDefinitions(Set<ParameterTypeDefinition> definitions) {
+        this.definitions = definitions;
     }
 
-    public Parameter removeModel(Model model) {
-        this.models.remove(model);
-        model.setParameters(null);
-        return this;
-    }
-
-    public Set<ParameterType> getTypes() {
-        return this.types;
-    }
-
-    public void setTypes(Set<ParameterType> parameterTypes) {
-        if (this.types != null) {
-            this.types.forEach(i -> i.setParameter(null));
-        }
-        if (parameterTypes != null) {
-            parameterTypes.forEach(i -> i.setParameter(this));
-        }
-        this.types = parameterTypes;
-    }
-
-    public Parameter types(Set<ParameterType> parameterTypes) {
-        this.setTypes(parameterTypes);
-        return this;
-    }
-
-    public Parameter addType(ParameterType parameterType) {
-        this.types.add(parameterType);
-        parameterType.setParameter(this);
-        return this;
-    }
-
-    public Parameter removeType(ParameterType parameterType) {
-        this.types.remove(parameterType);
-        parameterType.setParameter(null);
-        return this;
-    }
-
-    public Set<ParameterDistributionType> getDistributions() {
-        return this.distributions;
-    }
-
-    public void setDistributions(Set<ParameterDistributionType> parameterDistributionTypes) {
-        if (this.distributions != null) {
-            this.distributions.forEach(i -> i.setParameter(null));
-        }
-        if (parameterDistributionTypes != null) {
-            parameterDistributionTypes.forEach(i -> i.setParameter(this));
-        }
-        this.distributions = parameterDistributionTypes;
-    }
-
-    public Parameter distributions(Set<ParameterDistributionType> parameterDistributionTypes) {
-        this.setDistributions(parameterDistributionTypes);
-        return this;
-    }
-
-    public Parameter addDistribution(ParameterDistributionType parameterDistributionType) {
-        this.distributions.add(parameterDistributionType);
-        parameterDistributionType.setParameter(this);
-        return this;
-    }
-
-    public Parameter removeDistribution(ParameterDistributionType parameterDistributionType) {
-        this.distributions.remove(parameterDistributionType);
-        parameterDistributionType.setParameter(null);
-        return this;
-    }
-
-    public ParameterTypeDefinition getDefinitions() {
-        return this.definitions;
-    }
-
-    public void setDefinitions(ParameterTypeDefinition parameterTypeDefinition) {
-        this.definitions = parameterTypeDefinition;
-        this.definitionsId = parameterTypeDefinition != null ? parameterTypeDefinition.getId() : null;
-    }
-
-    public Parameter definitions(ParameterTypeDefinition parameterTypeDefinition) {
-        this.setDefinitions(parameterTypeDefinition);
-        return this;
-    }
-
-    public UUID getDefinitionsId() {
-        return this.definitionsId;
-    }
-
-    public void setDefinitionsId(UUID parameterTypeDefinition) {
-        this.definitionsId = parameterTypeDefinition;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -320,7 +208,7 @@ public class Parameter implements Serializable, Persistable<UUID> {
             ", name='" + getName() + "'" +
             ", label='" + getLabel() + "'" +
             ", description='" + getDescription() + "'" +
-            ", enbled='" + getEnbled() + "'" +
+            ", enbled='" + getEnabled() + "'" +
             ", fixedValue='" + getFixedValue() + "'" +
             ", ordering=" + getOrdering() +
             "}";

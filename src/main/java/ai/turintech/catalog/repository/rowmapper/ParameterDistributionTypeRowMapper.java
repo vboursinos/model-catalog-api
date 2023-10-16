@@ -27,7 +27,6 @@ public class ParameterDistributionTypeRowMapper implements BiFunction<Row, Strin
         ParameterDistributionType entity = new ParameterDistributionType();
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
-        entity.setParameterId(converter.fromRow(row, prefix + "_parameter_id", UUID.class));
         return entity;
     }
 }

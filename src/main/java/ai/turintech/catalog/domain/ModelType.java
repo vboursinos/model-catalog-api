@@ -3,6 +3,7 @@ package ai.turintech.catalog.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -36,10 +37,8 @@ public class ModelType implements Serializable, Persistable<UUID> {
         value = { "mlTasks", "structures", "types", "familyTypes", "ensembleTypes", "groups", "incompatibleMetrics", "parameters" },
         allowSetters = true
     )
-    private Model models;
+    private Set<Model> models;
 
-    @Column("models_id")
-    private UUID modelsId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -80,29 +79,14 @@ public class ModelType implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Model getModels() {
-        return this.models;
+    public Set<Model> getModels() {
+        return models;
     }
 
-    public void setModels(Model model) {
-        this.models = model;
-        this.modelsId = model != null ? model.getId() : null;
+    public void setModels(Set<Model> models) {
+        this.models = models;
     }
-
-    public ModelType models(Model model) {
-        this.setModels(model);
-        return this;
-    }
-
-    public UUID getModelsId() {
-        return this.modelsId;
-    }
-
-    public void setModelsId(UUID model) {
-        this.modelsId = model;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

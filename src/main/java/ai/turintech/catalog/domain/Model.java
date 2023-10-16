@@ -48,46 +48,40 @@ public class Model implements Serializable, Persistable<UUID> {
     private Boolean enabled;
 
     @NotNull(message = "must not be null")
-    @Column("decistion_tree")
-    private Boolean decistionTree;
+    @Column("decision_tree")
+    private Boolean decisionTree;
 
     @Transient
     private boolean isPersisted;
 
-    @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
-    private Set<MlTaskType> mlTasks = new HashSet<>();
+    @NotNull(message = "must not be null")
+    @Column("ml_task_id")
+    private MlTaskType mlTask;
+
+    @NotNull(message = "must not be null")
+    @Column("structure_id")
+    private ModelStructureType structure;
+
+    @NotNull(message = "must not be null")
+    @Column("model_type_id")
+    private ModelType modelType;
+
+    @NotNull(message = "must not be null")
+    @Column("family_type_id")
+    private ModelFamilyType familyType;
+
+    @NotNull(message = "must not be null")
+    @Column("ensemble_type_id")
+    private ModelEnsembleType ensembleType;
 
     @Transient
-    @JsonIgnoreProperties(value = { "model" }, allowSetters = true)
-    private Set<ModelStructureType> structures = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
-    private Set<ModelType> types = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
-    private Set<ModelFamilyType> familyTypes = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
-    private Set<ModelEnsembleType> ensembleTypes = new HashSet<>();
-
-    @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
     private Set<ModelGroupType> groups = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "models" }, allowSetters = true)
     private Set<Metric> incompatibleMetrics = new HashSet<>();
 
     @Transient
-    @JsonIgnoreProperties(value = { "models", "types", "distributions", "definitions" }, allowSetters = true)
-    private Parameter parameters;
-
-    @Column("parameters_id")
-    private UUID parametersId;
+    private Set<Parameter> parameters;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -182,17 +176,17 @@ public class Model implements Serializable, Persistable<UUID> {
         this.enabled = enabled;
     }
 
-    public Boolean getDecistionTree() {
-        return this.decistionTree;
+    public Boolean getDecisionTree() {
+        return this.decisionTree;
     }
 
-    public Model decistionTree(Boolean decistionTree) {
-        this.setDecistionTree(decistionTree);
+    public Model decisionTree(Boolean decisionTree) {
+        this.setDecisionTree(decisionTree);
         return this;
     }
 
-    public void setDecistionTree(Boolean decistionTree) {
-        this.decistionTree = decistionTree;
+    public void setDecisionTree(Boolean decisionTree) {
+        this.decisionTree = decisionTree;
     }
 
     @Transient
@@ -206,160 +200,6 @@ public class Model implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Set<MlTaskType> getMlTasks() {
-        return this.mlTasks;
-    }
-
-    public void setMlTasks(Set<MlTaskType> mlTaskTypes) {
-        if (this.mlTasks != null) {
-            this.mlTasks.forEach(i -> i.setModels(null));
-        }
-        if (mlTaskTypes != null) {
-            mlTaskTypes.forEach(i -> i.setModels(this));
-        }
-        this.mlTasks = mlTaskTypes;
-    }
-
-    public Model mlTasks(Set<MlTaskType> mlTaskTypes) {
-        this.setMlTasks(mlTaskTypes);
-        return this;
-    }
-
-    public Model addMlTask(MlTaskType mlTaskType) {
-        this.mlTasks.add(mlTaskType);
-        mlTaskType.setModels(this);
-        return this;
-    }
-
-    public Model removeMlTask(MlTaskType mlTaskType) {
-        this.mlTasks.remove(mlTaskType);
-        mlTaskType.setModels(null);
-        return this;
-    }
-
-    public Set<ModelStructureType> getStructures() {
-        return this.structures;
-    }
-
-    public void setStructures(Set<ModelStructureType> modelStructureTypes) {
-        if (this.structures != null) {
-            this.structures.forEach(i -> i.setModel(null));
-        }
-        if (modelStructureTypes != null) {
-            modelStructureTypes.forEach(i -> i.setModel(this));
-        }
-        this.structures = modelStructureTypes;
-    }
-
-    public Model structures(Set<ModelStructureType> modelStructureTypes) {
-        this.setStructures(modelStructureTypes);
-        return this;
-    }
-
-    public Model addStructure(ModelStructureType modelStructureType) {
-        this.structures.add(modelStructureType);
-        modelStructureType.setModel(this);
-        return this;
-    }
-
-    public Model removeStructure(ModelStructureType modelStructureType) {
-        this.structures.remove(modelStructureType);
-        modelStructureType.setModel(null);
-        return this;
-    }
-
-    public Set<ModelType> getTypes() {
-        return this.types;
-    }
-
-    public void setTypes(Set<ModelType> modelTypes) {
-        if (this.types != null) {
-            this.types.forEach(i -> i.setModels(null));
-        }
-        if (modelTypes != null) {
-            modelTypes.forEach(i -> i.setModels(this));
-        }
-        this.types = modelTypes;
-    }
-
-    public Model types(Set<ModelType> modelTypes) {
-        this.setTypes(modelTypes);
-        return this;
-    }
-
-    public Model addType(ModelType modelType) {
-        this.types.add(modelType);
-        modelType.setModels(this);
-        return this;
-    }
-
-    public Model removeType(ModelType modelType) {
-        this.types.remove(modelType);
-        modelType.setModels(null);
-        return this;
-    }
-
-    public Set<ModelFamilyType> getFamilyTypes() {
-        return this.familyTypes;
-    }
-
-    public void setFamilyTypes(Set<ModelFamilyType> modelFamilyTypes) {
-        if (this.familyTypes != null) {
-            this.familyTypes.forEach(i -> i.setModels(null));
-        }
-        if (modelFamilyTypes != null) {
-            modelFamilyTypes.forEach(i -> i.setModels(this));
-        }
-        this.familyTypes = modelFamilyTypes;
-    }
-
-    public Model familyTypes(Set<ModelFamilyType> modelFamilyTypes) {
-        this.setFamilyTypes(modelFamilyTypes);
-        return this;
-    }
-
-    public Model addFamilyType(ModelFamilyType modelFamilyType) {
-        this.familyTypes.add(modelFamilyType);
-        modelFamilyType.setModels(this);
-        return this;
-    }
-
-    public Model removeFamilyType(ModelFamilyType modelFamilyType) {
-        this.familyTypes.remove(modelFamilyType);
-        modelFamilyType.setModels(null);
-        return this;
-    }
-
-    public Set<ModelEnsembleType> getEnsembleTypes() {
-        return this.ensembleTypes;
-    }
-
-    public void setEnsembleTypes(Set<ModelEnsembleType> modelEnsembleTypes) {
-        if (this.ensembleTypes != null) {
-            this.ensembleTypes.forEach(i -> i.setModels(null));
-        }
-        if (modelEnsembleTypes != null) {
-            modelEnsembleTypes.forEach(i -> i.setModels(this));
-        }
-        this.ensembleTypes = modelEnsembleTypes;
-    }
-
-    public Model ensembleTypes(Set<ModelEnsembleType> modelEnsembleTypes) {
-        this.setEnsembleTypes(modelEnsembleTypes);
-        return this;
-    }
-
-    public Model addEnsembleType(ModelEnsembleType modelEnsembleType) {
-        this.ensembleTypes.add(modelEnsembleType);
-        modelEnsembleType.setModels(this);
-        return this;
-    }
-
-    public Model removeEnsembleType(ModelEnsembleType modelEnsembleType) {
-        this.ensembleTypes.remove(modelEnsembleType);
-        modelEnsembleType.setModels(null);
-        return this;
-    }
 
     public Set<ModelGroupType> getGroups() {
         return this.groups;
@@ -411,28 +251,61 @@ public class Model implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Parameter getParameters() {
-        return this.parameters;
+    public boolean isPersisted() {
+        return isPersisted;
     }
 
-    public void setParameters(Parameter parameter) {
-        this.parameters = parameter;
-        this.parametersId = parameter != null ? parameter.getId() : null;
+    public void setPersisted(boolean persisted) {
+        isPersisted = persisted;
     }
 
-    public Model parameters(Parameter parameter) {
-        this.setParameters(parameter);
-        return this;
+    public MlTaskType getMlTask() {
+        return mlTask;
     }
 
-    public UUID getParametersId() {
-        return this.parametersId;
+    public void setMlTask(MlTaskType mlTask) {
+        this.mlTask = mlTask;
     }
 
-    public void setParametersId(UUID parameter) {
-        this.parametersId = parameter;
+    public ModelStructureType getStructure() {
+        return structure;
     }
 
+    public void setStructure(ModelStructureType structure) {
+        this.structure = structure;
+    }
+
+    public ModelType getModelType() {
+        return modelType;
+    }
+
+    public void setModelType(ModelType modelType) {
+        this.modelType = modelType;
+    }
+
+    public ModelFamilyType getFamilyType() {
+        return familyType;
+    }
+
+    public void setFamilyType(ModelFamilyType familyType) {
+        this.familyType = familyType;
+    }
+
+    public ModelEnsembleType getEnsembleType() {
+        return ensembleType;
+    }
+
+    public void setEnsembleType(ModelEnsembleType ensembleType) {
+        this.ensembleType = ensembleType;
+    }
+
+    public Set<Parameter> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Set<Parameter> parameters) {
+        this.parameters = parameters;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -463,7 +336,7 @@ public class Model implements Serializable, Persistable<UUID> {
             ", advantages='" + getAdvantages() + "'" +
             ", disadvantages='" + getDisadvantages() + "'" +
             ", enabled='" + getEnabled() + "'" +
-            ", decistionTree='" + getDecistionTree() + "'" +
+            ", decisionTree='" + getDecisionTree() + "'" +
             "}";
     }
 }

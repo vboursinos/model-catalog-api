@@ -16,8 +16,6 @@ public class ParameterDistributionTypeDTO implements Serializable {
     @NotNull(message = "must not be null")
     private String name;
 
-    private ParameterDTO parameter;
-
     public UUID getId() {
         return id;
     }
@@ -32,14 +30,6 @@ public class ParameterDistributionTypeDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ParameterDTO getParameter() {
-        return parameter;
-    }
-
-    public void setParameter(ParameterDTO parameter) {
-        this.parameter = parameter;
     }
 
     @Override
@@ -69,7 +59,6 @@ public class ParameterDistributionTypeDTO implements Serializable {
         return "ParameterDistributionTypeDTO{" +
             "id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", parameter=" + getParameter() +
             "}";
     }
 }

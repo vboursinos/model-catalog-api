@@ -3,6 +3,7 @@ package ai.turintech.catalog.service.dto;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -15,8 +16,6 @@ public class ModelFamilyTypeDTO implements Serializable {
 
     @NotNull(message = "must not be null")
     private String name;
-
-    private ModelDTO models;
 
     public UUID getId() {
         return id;
@@ -32,14 +31,6 @@ public class ModelFamilyTypeDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ModelDTO getModels() {
-        return models;
-    }
-
-    public void setModels(ModelDTO models) {
-        this.models = models;
     }
 
     @Override
@@ -69,7 +60,6 @@ public class ModelFamilyTypeDTO implements Serializable {
         return "ModelFamilyTypeDTO{" +
             "id='" + getId() + "'" +
             ", name='" + getName() + "'" +
-            ", models=" + getModels() +
             "}";
     }
 }

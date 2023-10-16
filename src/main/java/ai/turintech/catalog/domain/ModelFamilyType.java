@@ -3,6 +3,7 @@ package ai.turintech.catalog.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -36,10 +37,7 @@ public class ModelFamilyType implements Serializable, Persistable<UUID> {
         value = { "mlTasks", "structures", "types", "familyTypes", "ensembleTypes", "groups", "incompatibleMetrics", "parameters" },
         allowSetters = true
     )
-    private Model models;
-
-    @Column("models_id")
-    private UUID modelsId;
+    private Set<Model> models;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -80,26 +78,12 @@ public class ModelFamilyType implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Model getModels() {
-        return this.models;
+    public Set<Model> getModels() {
+        return models;
     }
 
-    public void setModels(Model model) {
-        this.models = model;
-        this.modelsId = model != null ? model.getId() : null;
-    }
-
-    public ModelFamilyType models(Model model) {
-        this.setModels(model);
-        return this;
-    }
-
-    public UUID getModelsId() {
-        return this.modelsId;
-    }
-
-    public void setModelsId(UUID model) {
-        this.modelsId = model;
+    public void setModels(Set<Model> models) {
+        this.models = models;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -11,7 +11,6 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring")
 public interface ParameterDistributionTypeMapper extends EntityMapper<ParameterDistributionTypeDTO, ParameterDistributionType> {
-    @Mapping(target = "parameter", source = "parameter", qualifiedByName = "parameterId")
     ParameterDistributionTypeDTO toDto(ParameterDistributionType s);
 
     @Named("parameterId")

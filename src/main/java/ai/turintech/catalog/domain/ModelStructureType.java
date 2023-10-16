@@ -3,6 +3,8 @@ package ai.turintech.catalog.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -32,14 +34,8 @@ public class ModelStructureType implements Serializable, Persistable<UUID> {
     private boolean isPersisted;
 
     @Transient
-    @JsonIgnoreProperties(
-        value = { "mlTasks", "structures", "types", "familyTypes", "ensembleTypes", "groups", "incompatibleMetrics", "parameters" },
-        allowSetters = true
-    )
-    private Model model;
+    private Set<Model> models = new HashSet<>();
 
-    @Column("model_id")
-    private UUID modelId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -80,29 +76,23 @@ public class ModelStructureType implements Serializable, Persistable<UUID> {
         return this;
     }
 
-    public Model getModel() {
-        return this.model;
+    public boolean isPersisted() {
+        return isPersisted;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
-        this.modelId = model != null ? model.getId() : null;
+    public void setPersisted(boolean persisted) {
+        isPersisted = persisted;
     }
 
-    public ModelStructureType model(Model model) {
-        this.setModel(model);
-        return this;
+    public Set<Model> getModels() {
+        return models;
     }
 
-    public UUID getModelId() {
-        return this.modelId;
+    public void setModels(Set<Model> models) {
+        this.models = models;
     }
 
-    public void setModelId(UUID model) {
-        this.modelId = model;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

@@ -2,6 +2,8 @@ package ai.turintech.catalog.domain;
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -17,24 +19,28 @@ public class CategoricalParameterValue implements Serializable {
 
     @Id
     @Column("id")
-    private Long id;
+    private UUID id;
 
     @NotNull(message = "must not be null")
     @Column("value")
     private String value;
 
+    @NotNull(message = "must not be null")
+    @Column("parameter_type_definition_id")
+    private ParameterTypeDefinition parameterTypeDefinition;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public CategoricalParameterValue id(Long id) {
+    public CategoricalParameterValue id(UUID id) {
         this.setId(id);
         return this;
     }
 
-    public void setId(Long id) {
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -51,7 +57,14 @@ public class CategoricalParameterValue implements Serializable {
         this.value = value;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    public ParameterTypeDefinition getParameterTypeDefinition() {
+        return parameterTypeDefinition;
+    }
+
+    public void setParameterTypeDefinition(ParameterTypeDefinition parameterTypeDefinition) {
+        this.parameterTypeDefinition = parameterTypeDefinition;
+    }
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

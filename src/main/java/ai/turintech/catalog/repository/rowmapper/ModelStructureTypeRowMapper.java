@@ -27,7 +27,6 @@ public class ModelStructureTypeRowMapper implements BiFunction<Row, String, Mode
         ModelStructureType entity = new ModelStructureType();
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
-        entity.setModelId(converter.fromRow(row, prefix + "_model_id", UUID.class));
         return entity;
     }
 }

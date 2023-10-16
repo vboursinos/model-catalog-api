@@ -3,6 +3,7 @@ package ai.turintech.catalog.service.dto;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * A DTO for the {@link ai.turintech.catalog.domain.IntegerParameterValue} entity.
@@ -10,7 +11,7 @@ import java.util.Objects;
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class IntegerParameterValueDTO implements Serializable {
 
-    private Long id;
+    private UUID id;
 
     @NotNull(message = "must not be null")
     private Integer left;
@@ -18,11 +19,11 @@ public class IntegerParameterValueDTO implements Serializable {
     @NotNull(message = "must not be null")
     private Integer right;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

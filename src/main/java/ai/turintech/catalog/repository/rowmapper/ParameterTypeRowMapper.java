@@ -27,8 +27,6 @@ public class ParameterTypeRowMapper implements BiFunction<Row, String, Parameter
         ParameterType entity = new ParameterType();
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
-        entity.setParameterId(converter.fromRow(row, prefix + "_parameter_id", UUID.class));
-        entity.setParameterTypeDefinitionId(converter.fromRow(row, prefix + "_parameter_type_definition_id", UUID.class));
         return entity;
     }
 }

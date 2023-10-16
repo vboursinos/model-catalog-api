@@ -1,5 +1,6 @@
 package ai.turintech.catalog.repository.rowmapper;
 
+import ai.turintech.catalog.domain.Model;
 import ai.turintech.catalog.domain.Parameter;
 import io.r2dbc.spi.Row;
 import java.util.UUID;
@@ -29,10 +30,10 @@ public class ParameterRowMapper implements BiFunction<Row, String, Parameter> {
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
         entity.setLabel(converter.fromRow(row, prefix + "_label", String.class));
         entity.setDescription(converter.fromRow(row, prefix + "_description", String.class));
-        entity.setEnbled(converter.fromRow(row, prefix + "_enbled", Boolean.class));
+        entity.setEnabled(converter.fromRow(row, prefix + "_enabled", Boolean.class));
         entity.setFixedValue(converter.fromRow(row, prefix + "_fixed_value", Boolean.class));
         entity.setOrdering(converter.fromRow(row, prefix + "_ordering", Integer.class));
-        entity.setDefinitionsId(converter.fromRow(row, prefix + "_definitions_id", UUID.class));
+        entity.setModel(converter.fromRow(row, prefix + "_model", Model.class));
         return entity;
     }
 }

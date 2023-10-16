@@ -2,7 +2,9 @@ package ai.turintech.catalog.service.dto;
 
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -22,7 +24,7 @@ public class ParameterDTO implements Serializable {
     private String description;
 
     @NotNull(message = "must not be null")
-    private Boolean enbled;
+    private Boolean enabled;
 
     @NotNull(message = "must not be null")
     private Boolean fixedValue;
@@ -30,7 +32,7 @@ public class ParameterDTO implements Serializable {
     @NotNull(message = "must not be null")
     private Integer ordering;
 
-    private ParameterTypeDefinitionDTO definitions;
+    private Set<ParameterTypeDefinitionDTO> definitions = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -64,12 +66,16 @@ public class ParameterDTO implements Serializable {
         this.description = description;
     }
 
-    public Boolean getEnbled() {
-        return enbled;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnbled(Boolean enbled) {
-        this.enbled = enbled;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setDefinitions(Set<ParameterTypeDefinitionDTO> definitions) {
+        this.definitions = definitions;
     }
 
     public Boolean getFixedValue() {
@@ -86,14 +92,6 @@ public class ParameterDTO implements Serializable {
 
     public void setOrdering(Integer ordering) {
         this.ordering = ordering;
-    }
-
-    public ParameterTypeDefinitionDTO getDefinitions() {
-        return definitions;
-    }
-
-    public void setDefinitions(ParameterTypeDefinitionDTO definitions) {
-        this.definitions = definitions;
     }
 
     @Override
@@ -125,10 +123,9 @@ public class ParameterDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", label='" + getLabel() + "'" +
             ", description='" + getDescription() + "'" +
-            ", enbled='" + getEnbled() + "'" +
+            ", enbled='" + getEnabled() + "'" +
             ", fixedValue='" + getFixedValue() + "'" +
             ", ordering=" + getOrdering() +
-            ", definitions=" + getDefinitions() +
             "}";
     }
 }

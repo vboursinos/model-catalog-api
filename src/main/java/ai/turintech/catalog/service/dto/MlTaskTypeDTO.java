@@ -1,8 +1,11 @@
 package ai.turintech.catalog.service.dto;
 
+import ai.turintech.catalog.domain.Model;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -16,7 +19,7 @@ public class MlTaskTypeDTO implements Serializable {
     @NotNull(message = "must not be null")
     private String name;
 
-    private ModelDTO models;
+    private Set<Model> models = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -34,11 +37,11 @@ public class MlTaskTypeDTO implements Serializable {
         this.name = name;
     }
 
-    public ModelDTO getModels() {
+    public Set<Model> getModels() {
         return models;
     }
 
-    public void setModels(ModelDTO models) {
+    public void setModels(Set<Model> models) {
         this.models = models;
     }
 

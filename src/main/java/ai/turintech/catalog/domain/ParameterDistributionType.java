@@ -3,6 +3,7 @@ package ai.turintech.catalog.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -32,11 +33,8 @@ public class ParameterDistributionType implements Serializable, Persistable<UUID
     private boolean isPersisted;
 
     @Transient
-    @JsonIgnoreProperties(value = { "models", "types", "distributions", "definitions" }, allowSetters = true)
-    private Parameter parameter;
-
-    @Column("parameter_id")
-    private UUID parameterId;
+    @JsonIgnoreProperties(value = { "parameters", "types" }, allowSetters = true)
+    private Set<ParameterTypeDefinition> parameterTypeDefinitions;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -77,29 +75,14 @@ public class ParameterDistributionType implements Serializable, Persistable<UUID
         return this;
     }
 
-    public Parameter getParameter() {
-        return this.parameter;
+    public Set<ParameterTypeDefinition> getParameterTypeDefinitions() {
+        return parameterTypeDefinitions;
     }
 
-    public void setParameter(Parameter parameter) {
-        this.parameter = parameter;
-        this.parameterId = parameter != null ? parameter.getId() : null;
+    public void setParameterTypeDefinitions(Set<ParameterTypeDefinition> parameterTypeDefinitions) {
+        this.parameterTypeDefinitions = parameterTypeDefinitions;
     }
-
-    public ParameterDistributionType parameter(Parameter parameter) {
-        this.setParameter(parameter);
-        return this;
-    }
-
-    public UUID getParameterId() {
-        return this.parameterId;
-    }
-
-    public void setParameterId(UUID parameter) {
-        this.parameterId = parameter;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

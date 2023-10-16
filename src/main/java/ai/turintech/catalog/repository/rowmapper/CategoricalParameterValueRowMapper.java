@@ -1,7 +1,10 @@
 package ai.turintech.catalog.repository.rowmapper;
 
 import ai.turintech.catalog.domain.CategoricalParameterValue;
+import ai.turintech.catalog.domain.ParameterTypeDefinition;
 import io.r2dbc.spi.Row;
+
+import java.util.UUID;
 import java.util.function.BiFunction;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +27,8 @@ public class CategoricalParameterValueRowMapper implements BiFunction<Row, Strin
     @Override
     public CategoricalParameterValue apply(Row row, String prefix) {
         CategoricalParameterValue entity = new CategoricalParameterValue();
-        entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
+        entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
+        entity.setParameterTypeDefinition(converter.fromRow(row, prefix + "_parameter_type_definition_id", ParameterTypeDefinition.class));
         entity.setValue(converter.fromRow(row, prefix + "_value", String.class));
         return entity;
     }

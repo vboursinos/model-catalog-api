@@ -3,6 +3,7 @@ package ai.turintech.catalog.service.dto;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * A DTO for the {@link ai.turintech.catalog.domain.FloatParameterRange} entity.
@@ -10,7 +11,7 @@ import java.util.Objects;
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class FloatParameterRangeDTO implements Serializable {
 
-    private Long id;
+    private UUID id;
 
     @NotNull(message = "must not be null")
     private Boolean isLeftOpen;
@@ -19,16 +20,17 @@ public class FloatParameterRangeDTO implements Serializable {
     private Boolean isRightOpen;
 
     @NotNull(message = "must not be null")
-    private Integer left;
+    private Double left;
 
     @NotNull(message = "must not be null")
-    private Integer right;
+    private Double right;
 
-    public Long getId() {
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -48,19 +50,19 @@ public class FloatParameterRangeDTO implements Serializable {
         this.isRightOpen = isRightOpen;
     }
 
-    public Integer getLeft() {
+    public Double getLeft() {
         return left;
     }
 
-    public void setLeft(Integer left) {
+    public void setLeft(Double left) {
         this.left = left;
     }
 
-    public Integer getRight() {
+    public Double getRight() {
         return right;
     }
 
-    public void setRight(Integer right) {
+    public void setRight(Double right) {
         this.right = right;
     }
 
@@ -92,8 +94,6 @@ public class FloatParameterRangeDTO implements Serializable {
             "id=" + getId() +
             ", isLeftOpen='" + getIsLeftOpen() + "'" +
             ", isRightOpen='" + getIsRightOpen() + "'" +
-            ", left=" + getLeft() +
-            ", right=" + getRight() +
             "}";
     }
 }
