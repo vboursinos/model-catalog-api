@@ -37,14 +37,22 @@
     <include file="config/liquibase/changelog/20231016080627_added_entity_FloatParameterRange.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231016080628_added_entity_BooleanParameter.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20231016080610_added_entity_constraints_ModelType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080611_added_entity_constraints_MlTaskType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080612_added_entity_constraints_ModelStructureType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080614_added_entity_constraints_ModelFamilyType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080615_added_entity_constraints_ModelEnsembleType.xml" relativeToChangelogFile="false"/>
+
+
+<!--    <include file="config/liquibase/changelog/20231016080610_added_entity_constraints_ModelType.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231016080611_added_entity_constraints_MlTaskType.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231016080612_added_entity_constraints_ModelStructureType.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231016080614_added_entity_constraints_ModelFamilyType.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231016080615_added_entity_constraints_ModelEnsembleType.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20231016080617_added_entity_constraints_Model.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080618_added_entity_constraints_ParameterType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231016080619_added_entity_constraints_ParameterDistributionType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080622_added_entity_constraints_CategoricalParameter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080624_added_entity_constraints_IntegerParameter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080626_added_entity_constraints_FloatParameter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080628_added_entity_constraints_BooleanParameter.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080623_added_entity_constraints_CategoricalParameterValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080625_added_entity_constraints_IntegerParameterValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080627_added_entity_constraints_FloatParameterRange.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20231016080619_added_entity_constraints_ParameterTypeDefinition.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231016080620_added_entity_constraints_Parameter.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
