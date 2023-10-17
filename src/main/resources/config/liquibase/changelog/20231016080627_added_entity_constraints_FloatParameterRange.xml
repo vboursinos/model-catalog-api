@@ -4,15 +4,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <!--
-        Added the constraints for entity ParameterDistributionType.
+        Added the constraints for entity ParameterType.
     -->
-    <changeSet id="20231016080619-2" author="jhipster">
+    <changeSet id="20231016080618-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="parameter_id"
-                                 baseTableName="parameter_distribution_type"
-                                 constraintName="fk_parameter_distribution_type__parameter_id"
+        <addForeignKeyConstraint baseColumnNames="parameter_type_definition_id"
+                                 baseTableName="float_parameter_range"
+                                 constraintName="fk_float_parameter_range__parameter_type_definition_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="parameter"
+                                 referencedTableName="parameter_type_definition"
                                  />
+
     </changeSet>
 </databaseChangeLog>

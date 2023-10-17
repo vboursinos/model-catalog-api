@@ -14,6 +14,15 @@
             <column name="id" type="${uuidType}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="parameter_id" type="${uuidType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="parameter_type_id" type="${uuidType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="parameter_distribution_type_id" type="${uuidType}">
+                <constraints nullable="true" />
+            </column>
             <column name="ordering" type="integer">
                 <constraints nullable="false" />
             </column>
@@ -39,6 +48,9 @@
                   usePreparedStatements="true">
             <column name="id" type="${uuidType}"/>
             <column name="ordering" type="numeric"/>
+            <column name="parameter_id" type="${uuidType}"/>
+            <column name="parameter_type_id" type="${uuidType}"/>
+            <column name="parameter_distribution_type_id" type="${uuidType}"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

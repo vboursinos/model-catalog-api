@@ -36,11 +36,40 @@
                                  referencedTableName="metric"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="parameters_id"
+        <addForeignKeyConstraint baseColumnNames="model_type_id"
                                  baseTableName="model"
-                                 constraintName="fk_model__parameters_id"
+                                 constraintName="fk_model__model_type_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="parameter"
+                                 referencedTableName="model_type"
                                  />
+
+        <addForeignKeyConstraint baseColumnNames="ml_task_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model__ml_task_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ml_task_type"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="structure_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model__structure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model_structure_type"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="ensemble_type_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model__ensemble_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model_ensemble_type"
+        />
+
+        <addForeignKeyConstraint baseColumnNames="family_type_id"
+                                 baseTableName="model"
+                                 constraintName="fk_model__family_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="model_family_type"
+        />
+
     </changeSet>
 </databaseChangeLog>

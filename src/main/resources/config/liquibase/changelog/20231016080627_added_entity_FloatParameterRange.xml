@@ -11,7 +11,10 @@
     -->
     <changeSet id="20231016080627-1" author="jhipster">
         <createTable tableName="float_parameter_range">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="${uuidType}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="parameter_type_definition_id" type="${uuidType}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="is_left_open" type="boolean">
@@ -20,10 +23,10 @@
             <column name="is_right_open" type="boolean">
                 <constraints nullable="false" />
             </column>
-            <column name="jhi_left" type="integer">
+            <column name="left" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="jhi_right" type="integer">
+            <column name="right" type="integer">
                 <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -46,11 +49,12 @@
                   separator=";"
                   tableName="float_parameter_range"
                   usePreparedStatements="true">
-            <column name="id" type="numeric"/>
+            <column name="id" type="${uuidType}"/>
+            <column name="parameter_type_definition_id" type="${uuidType}"/>
             <column name="is_left_open" type="boolean"/>
             <column name="is_right_open" type="boolean"/>
-            <column name="jhi_left" type="numeric"/>
-            <column name="jhi_right" type="numeric"/>
+            <column name="left" type="numeric"/>
+            <column name="right" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
