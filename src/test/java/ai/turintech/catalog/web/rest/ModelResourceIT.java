@@ -95,7 +95,7 @@ class ModelResourceIT {
             .advantages(DEFAULT_ADVANTAGES)
             .disadvantages(DEFAULT_DISADVANTAGES)
             .enabled(DEFAULT_ENABLED)
-            .decistionTree(DEFAULT_DECISTION_TREE);
+            .decisionTree(DEFAULT_DECISTION_TREE);
         return model;
     }
 
@@ -114,7 +114,7 @@ class ModelResourceIT {
             .advantages(UPDATED_ADVANTAGES)
             .disadvantages(UPDATED_DISADVANTAGES)
             .enabled(UPDATED_ENABLED)
-            .decistionTree(UPDATED_DECISTION_TREE);
+            .decisionTree(UPDATED_DECISTION_TREE);
         return model;
     }
 
@@ -164,7 +164,7 @@ class ModelResourceIT {
         assertThat(testModel.getAdvantages()).isEqualTo(DEFAULT_ADVANTAGES);
         assertThat(testModel.getDisadvantages()).isEqualTo(DEFAULT_DISADVANTAGES);
         assertThat(testModel.getEnabled()).isEqualTo(DEFAULT_ENABLED);
-        assertThat(testModel.getDecistionTree()).isEqualTo(DEFAULT_DECISTION_TREE);
+        assertThat(testModel.getDecisionTree()).isEqualTo(DEFAULT_DECISTION_TREE);
     }
 
     @Test
@@ -260,7 +260,7 @@ class ModelResourceIT {
     void checkDecistionTreeIsRequired() throws Exception {
         int databaseSizeBeforeTest = modelRepository.findAll().collectList().block().size();
         // set the field null
-        model.setDecistionTree(null);
+        model.setDecisionTree(null);
 
         // Create the Model, which fails.
         ModelDTO modelDTO = modelMapper.toDto(model);
@@ -394,7 +394,7 @@ class ModelResourceIT {
             .advantages(UPDATED_ADVANTAGES)
             .disadvantages(UPDATED_DISADVANTAGES)
             .enabled(UPDATED_ENABLED)
-            .decistionTree(UPDATED_DECISTION_TREE);
+            .decisionTree(UPDATED_DECISTION_TREE);
         ModelDTO modelDTO = modelMapper.toDto(updatedModel);
 
         webTestClient
@@ -416,7 +416,7 @@ class ModelResourceIT {
         assertThat(testModel.getAdvantages()).isEqualTo(UPDATED_ADVANTAGES);
         assertThat(testModel.getDisadvantages()).isEqualTo(UPDATED_DISADVANTAGES);
         assertThat(testModel.getEnabled()).isEqualTo(UPDATED_ENABLED);
-        assertThat(testModel.getDecistionTree()).isEqualTo(UPDATED_DECISTION_TREE);
+        assertThat(testModel.getDecisionTree()).isEqualTo(UPDATED_DECISTION_TREE);
     }
 
     @Test
@@ -505,7 +505,7 @@ class ModelResourceIT {
             .description(UPDATED_DESCRIPTION)
             .advantages(UPDATED_ADVANTAGES)
             .disadvantages(UPDATED_DISADVANTAGES)
-            .decistionTree(UPDATED_DECISTION_TREE);
+            .decisionTree(UPDATED_DECISTION_TREE);
 
         webTestClient
             .patch()
@@ -526,7 +526,7 @@ class ModelResourceIT {
         assertThat(testModel.getAdvantages()).isEqualTo(UPDATED_ADVANTAGES);
         assertThat(testModel.getDisadvantages()).isEqualTo(UPDATED_DISADVANTAGES);
         assertThat(testModel.getEnabled()).isEqualTo(DEFAULT_ENABLED);
-        assertThat(testModel.getDecistionTree()).isEqualTo(UPDATED_DECISTION_TREE);
+        assertThat(testModel.getDecisionTree()).isEqualTo(UPDATED_DECISTION_TREE);
     }
 
     @Test
@@ -548,7 +548,7 @@ class ModelResourceIT {
             .advantages(UPDATED_ADVANTAGES)
             .disadvantages(UPDATED_DISADVANTAGES)
             .enabled(UPDATED_ENABLED)
-            .decistionTree(UPDATED_DECISTION_TREE);
+            .decisionTree(UPDATED_DECISTION_TREE);
 
         webTestClient
             .patch()
@@ -569,7 +569,7 @@ class ModelResourceIT {
         assertThat(testModel.getAdvantages()).isEqualTo(UPDATED_ADVANTAGES);
         assertThat(testModel.getDisadvantages()).isEqualTo(UPDATED_DISADVANTAGES);
         assertThat(testModel.getEnabled()).isEqualTo(UPDATED_ENABLED);
-        assertThat(testModel.getDecistionTree()).isEqualTo(UPDATED_DECISTION_TREE);
+        assertThat(testModel.getDecisionTree()).isEqualTo(UPDATED_DECISTION_TREE);
     }
 
     @Test
