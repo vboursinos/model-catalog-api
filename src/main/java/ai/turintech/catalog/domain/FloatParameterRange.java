@@ -30,12 +30,12 @@ public class FloatParameterRange implements Serializable {
     private Boolean isRightOpen;
 
     @NotNull(message = "must not be null")
-    @Column("left")
-    private Double left;
+    @Column("lower")
+    private Double lower;
 
     @NotNull(message = "must not be null")
-    @Column("right")
-    private Double right;
+    @Column("upper")
+    private Double upper;
 
     @NotNull(message = "must not be null")
     @Column("parameter_type_definition_id")
@@ -57,20 +57,20 @@ public class FloatParameterRange implements Serializable {
         this.id = id;
     }
 
-    public void setLeft(Double left) {
-        this.left = left;
+    public Double getLower() {
+        return lower;
     }
 
-    public void setRight(Double right) {
-        this.right = right;
+    public void setLower(Double lower) {
+        this.lower = lower;
     }
 
-    public Double getLeft() {
-        return this.left;
+    public Double getUpper() {
+        return upper;
     }
 
-    public Double getRight() {
-        return this.right;
+    public void setUpper(Double upper) {
+        this.upper = upper;
     }
 
     public Boolean getIsLeftOpen() {
@@ -126,14 +126,16 @@ public class FloatParameterRange implements Serializable {
     }
 
     // prettier-ignore
+
     @Override
     public String toString() {
         return "FloatParameterRange{" +
-            "id=" + getId() +
-            ", isLeftOpen='" + getIsLeftOpen() + "'" +
-            ", isRightOpen='" + getIsRightOpen() + "'" +
-            ", left=" + getLeft() +
-            ", right=" + getRight() +
-            "}";
+                "id=" + id +
+                ", isLeftOpen=" + isLeftOpen +
+                ", isRightOpen=" + isRightOpen +
+                ", lower=" + lower +
+                ", upper=" + upper +
+                ", parameterTypeDefinition=" + parameterTypeDefinition +
+                '}';
     }
 }

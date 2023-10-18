@@ -33,10 +33,6 @@ public class ModelType implements Serializable, Persistable<UUID> {
     private boolean isPersisted;
 
     @Transient
-    @JsonIgnoreProperties(
-        value = { "mlTasks", "structures", "types", "familyTypes", "ensembleTypes", "groups", "incompatibleMetrics", "parameters" },
-        allowSetters = true
-    )
     private Set<Model> models;
 
 

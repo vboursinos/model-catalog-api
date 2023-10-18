@@ -22,12 +22,12 @@ public class IntegerParameterValue implements Serializable {
     private UUID id;
 
     @NotNull(message = "must not be null")
-    @Column("left")
-    private Integer left;
+    @Column("lower")
+    private Integer lower;
 
     @NotNull(message = "must not be null")
-    @Column("right")
-    private Integer right;
+    @Column("upper")
+    private Integer upper;
 
     @NotNull(message = "must not be null")
     @Column("parameter_type_definition_id")
@@ -48,30 +48,21 @@ public class IntegerParameterValue implements Serializable {
         this.setId(id);
         return this;
     }
-    public Integer getLeft() {
-        return this.left;
+
+    public Integer getLower() {
+        return lower;
     }
 
-    public IntegerParameterValue left(Integer left) {
-        this.setLeft(left);
-        return this;
+    public void setLower(Integer lower) {
+        this.lower = lower;
     }
 
-    public void setLeft(Integer left) {
-        this.left = left;
+    public Integer getUpper() {
+        return upper;
     }
 
-    public Integer getRight() {
-        return this.right;
-    }
-
-    public IntegerParameterValue right(Integer right) {
-        this.setRight(right);
-        return this;
-    }
-
-    public void setRight(Integer right) {
-        this.right = right;
+    public void setUpper(Integer upper) {
+        this.upper = upper;
     }
 
     public ParameterTypeDefinition getParameterTypeDefinition() {
@@ -101,12 +92,14 @@ public class IntegerParameterValue implements Serializable {
     }
 
     // prettier-ignore
+
     @Override
     public String toString() {
         return "IntegerParameterValue{" +
-            "id=" + getId() +
-            ", left=" + getLeft() +
-            ", right=" + getRight() +
-            "}";
+                "id=" + id +
+                ", lower=" + lower +
+                ", upper=" + upper +
+                ", parameterTypeDefinition=" + parameterTypeDefinition +
+                '}';
     }
 }

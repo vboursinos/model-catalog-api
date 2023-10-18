@@ -29,8 +29,8 @@ public class IntegerParameterValueRowMapper implements BiFunction<Row, String, I
         IntegerParameterValue entity = new IntegerParameterValue();
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setParameterTypeDefinition(converter.fromRow(row, prefix + "_parameter_type_definition_id", ParameterTypeDefinition.class));
-        entity.setLeft(converter.fromRow(row, prefix + "_jhi_left", Integer.class));
-        entity.setRight(converter.fromRow(row, prefix + "_jhi_right", Integer.class));
+        entity.setLower(converter.fromRow(row, prefix + "_lower", Integer.class));
+        entity.setUpper(converter.fromRow(row, prefix + "_upper", Integer.class));
         return entity;
     }
 }

@@ -29,8 +29,8 @@ public class FloatParameterRangeRowMapper implements BiFunction<Row, String, Flo
         entity.setId(converter.fromRow(row, prefix + "_id", UUID.class));
         entity.setIsLeftOpen(converter.fromRow(row, prefix + "_is_left_open", Boolean.class));
         entity.setIsRightOpen(converter.fromRow(row, prefix + "_is_right_open", Boolean.class));
-        entity.setLeft(converter.fromRow(row, prefix + "_left", Double.class));
-        entity.setRight(converter.fromRow(row, prefix + "_right", Double.class));
+        entity.setLower(converter.fromRow(row, prefix + "_lower", Double.class));
+        entity.setUpper(converter.fromRow(row, prefix + "_upper", Double.class));
         return entity;
     }
 }
