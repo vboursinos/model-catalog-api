@@ -6,13 +6,14 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
     <!--
         Added the entity ParameterTypeDefinition.
     -->
     <changeSet id="20231016080621-1" author="jhipster">
         <createTable tableName="parameter_type_definition">
-            <column name="id" type="${uuidType}">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="${uuid_type}" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" unique="true" />
             </column>
             <column name="parameter_id" type="${uuidType}">
                 <constraints nullable="true" />

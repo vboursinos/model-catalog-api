@@ -15,9 +15,9 @@
                                  referencedTableName="model"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="groups_id"
+        <addForeignKeyConstraint baseColumnNames="group_id"
                                  baseTableName="rel_model__groups"
-                                 constraintName="fk_rel_model__groups__groups_id"
+                                 constraintName="fk_rel_model__groups__group_id"
                                  referencedColumnNames="id"
                                  referencedTableName="model_group_type"
                                  />
@@ -29,9 +29,9 @@
                                  referencedTableName="model"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="incompatible_metrics_id"
+        <addForeignKeyConstraint baseColumnNames="metric_id"
                                  baseTableName="rel_model__incompatible_metrics"
-                                 constraintName="fk_rel_model__incompatible_metrics__incompatible_metrics_id"
+                                 constraintName="fk_rel_model__incompatible_metrics__metric_id"
                                  referencedColumnNames="id"
                                  referencedTableName="metric"
                                  />

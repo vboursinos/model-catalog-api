@@ -6,13 +6,14 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
     <!--
         Added the entity Model.
     -->
     <changeSet id="20231016080617-1" author="jhipster">
         <createTable tableName="model">
-            <column name="id" type="${uuidType}">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="${uuid_type}" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" unique="true" />
             </column>
             <column name="model_type_id" type="${uuidType}">
                 <constraints nullable="false"/>
@@ -21,7 +22,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="display_name" type="varchar(255)">
                 <constraints nullable="false" />
@@ -29,23 +30,23 @@
             <column name="structure_id" type="${uuidType}">
                 <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(255)">
+            <column name="description" type="clob">
                 <constraints nullable="true" />
             </column>
-            <column name="advantages" type="varchar(255)">
+            <column name="advantages" type="clob">
                 <constraints nullable="true" />
             </column>
-            <column name="disadvantages" type="varchar(255)">
+            <column name="disadvantages" type="clob">
                 <constraints nullable="true" />
             </column>
             <column name="enabled" type="boolean">
                 <constraints nullable="false" />
             </column>
             <column name="ensemble_type_id" type="${uuidType}">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="family_type_id" type="${uuidType}">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="decision_tree" type="boolean">
                 <constraints nullable="false" />
@@ -57,7 +58,7 @@
     <changeSet id="20231016080617-1-relations" author="jhipster">
 
         <createTable tableName="rel_model__groups">
-            <column name="groups_id" type="${uuidType}">
+            <column name="group_id" type="${uuidType}">
                 <constraints nullable="false"/>
             </column>
             <column name="model_id" type="${uuidType}">
@@ -65,10 +66,10 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="model_id, groups_id" tableName="rel_model__groups"/>
+        <addPrimaryKey columnNames="model_id, group_id" tableName="rel_model__groups"/>
 
         <createTable tableName="rel_model__incompatible_metrics">
-            <column name="incompatible_metrics_id" type="${uuidType}">
+            <column name="metric_id" type="${uuidType}">
                 <constraints nullable="false"/>
             </column>
             <column name="model_id" type="${uuidType}">
@@ -76,7 +77,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="model_id, incompatible_metrics_id" tableName="rel_model__incompatible_metrics"/>
+        <addPrimaryKey columnNames="model_id, metric_id" tableName="rel_model__incompatible_metrics"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

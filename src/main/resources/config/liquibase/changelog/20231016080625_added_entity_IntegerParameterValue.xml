@@ -6,21 +6,22 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
     <!--
         Added the entity IntegerParameterValue.
     -->
     <changeSet id="20231016080625-1" author="jhipster">
         <createTable tableName="integer_parameter_value">
-            <column name="id" type="${uuidType}">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="${uuid_type}" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" unique="true" />
             </column>
             <column name="parameter_type_definition_id" type="${uuidType}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="left" type="integer">
+            <column name="lower" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="right" type="integer">
+            <column name="upper" type="integer">
                 <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

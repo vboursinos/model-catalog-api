@@ -9,13 +9,15 @@
     <!--
         Added the entity ParameterDistributionType.
     -->
+    <property name="uuid_type" value="uuid" dbms="postgresql"/>
+
     <changeSet id="20231016080619-1" author="jhipster">
         <createTable tableName="parameter_distribution_type">
-            <column name="id" type="${uuidType}">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="${uuid_type}" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" unique="true" />
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
