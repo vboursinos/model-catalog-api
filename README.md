@@ -27,7 +27,10 @@ To start your application in the dev profile, run:
 ```
 ./mvnw
 ```
-
+```
+docker-compose -f src/main/docker/services.yml up -d
+docker-compose -f src/main/docker/jhipster-control-center.yml up -d
+```
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
 ### JHipster Control Center

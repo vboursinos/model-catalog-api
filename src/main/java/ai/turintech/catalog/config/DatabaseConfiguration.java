@@ -1,5 +1,6 @@
 package ai.turintech.catalog.config;
 
+import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -10,6 +11,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
+
+import io.r2dbc.spi.ConnectionFactoryOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +31,8 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.data.relational.core.dialect.RenderContextFactory;
 import org.springframework.data.relational.core.sql.render.SqlRenderer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import tech.jhipster.config.JHipsterConstants;
-import tech.jhipster.config.h2.H2ConfigurationHelper;
+
+import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
 @Configuration
 @EnableR2dbcRepositories({ "ai.turintech.catalog.repository" })
@@ -44,36 +47,7 @@ public class DatabaseConfiguration {
         this.env = env;
     }
 
-    /**
-     * Open the TCP port for the H2 database, so it is available remotely.
-     *
-     * @return the H2 database TCP server.
-     * @throws SQLException if the server failed to start.
-     */
-    @Bean(initMethod = "start", destroyMethod = "stop")
-    @Profile(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)
-    public Object h2TCPServer() throws SQLException {
-        String port = getValidPortForH2();
-        log.debug("H2 database is available on port {}", port);
-        return H2ConfigurationHelper.createServer(port);
-    }
-
-    private String getValidPortForH2() {
-        int port = Integer.parseInt(env.getProperty("server.port"));
-        if (port < 10000) {
-            port = 10000 + port;
-        } else {
-            if (port < 63536) {
-                port = port + 2000;
-            } else {
-                port = port - 2000;
-            }
-        }
-        return String.valueOf(port);
-    }
-
     // LocalDateTime seems to be the only type that is supported across all drivers atm
-    // See https://github.com/r2dbc/r2dbc-h2/pull/139 https://github.com/mirromutth/r2dbc-mysql/issues/105
     @Bean
     public R2dbcCustomConversions r2dbcCustomConversions(R2dbcDialect dialect) {
         List<Object> converters = new ArrayList<>();
@@ -85,6 +59,22 @@ public class DatabaseConfiguration {
         converters.add(ZonedDateTimeReadConverter.INSTANCE);
         converters.add(ZonedDateTimeWriteConverter.INSTANCE);
         return R2dbcCustomConversions.of(dialect, converters);
+    }
+
+    @Bean
+    public ConnectionFactory connectionFactory() {
+        String databaseUrl = env.getProperty("spring.r2dbc.url");
+        String username = env.getProperty("spring.r2dbc.username");
+        String password = env.getProperty("spring.r2dbc.password");
+
+        return ConnectionFactories.get(ConnectionFactoryOptions.builder()
+                .option(DRIVER, "postgresql")
+                .option(HOST, "localhost")
+                .option(PORT, 5434)
+                .option(DATABASE, "postgres")
+                .option(USER, username)
+                .option(PASSWORD, password)
+                .build());
     }
 
     @Bean

@@ -825,6 +825,10 @@
                             <artifactId>h2</artifactId>
                             <version>${h2.version}</version>
                         </dependency>
+                        <dependency>
+                            <groupId>org.postgresql</groupId>
+                            <artifactId>postgresql</artifactId>
+                        </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
@@ -850,12 +854,12 @@
             </activation>
             <properties>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
+<!--                <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>-->
                 <profile.test>testdev</profile.test>
-                <liquibase-plugin.hibernate-dialect>org.hibernate.dialect.H2Dialect</liquibase-plugin.hibernate-dialect>
-                <liquibase-plugin.driver>org.h2.Driver</liquibase-plugin.driver>
-                <liquibase-plugin.url>jdbc:h2:file:${project.build.directory}/h2db/db/model_catalog</liquibase-plugin.url>
-                <liquibase-plugin.username>model_catalog</liquibase-plugin.username>
+                <liquibase-plugin.hibernate-dialect>org.hibernate.dialect.PostgreSQLDialect</liquibase-plugin.hibernate-dialect>
+                <liquibase-plugin.driver>org.postgresql.Driver</liquibase-plugin.driver>
+                <liquibase-plugin.url>jdbc:postgresql://localhost:5434/postgres</liquibase-plugin.url>
+                <liquibase-plugin.username>file-api</liquibase-plugin.username>
                 <liquibase-plugin.password/>
             </properties>
             <dependencies>
@@ -871,6 +875,20 @@
                 <dependency>
                     <groupId>io.r2dbc</groupId>
                     <artifactId>r2dbc-h2</artifactId>
+                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>io.r2dbc</groupId>-->
+<!--                    <artifactId>r2dbc-postgresql</artifactId>-->
+<!--                    <version>0.8.8.RELEASE</version> &lt;!&ndash; use the latest version here &ndash;&gt;-->
+<!--                </dependency>-->
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>r2dbc-postgresql</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -1006,10 +1024,10 @@
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                 </dependency>
-                <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>r2dbc-postgresql</artifactId>
-                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>org.postgresql</groupId>-->
+<!--                    <artifactId>r2dbc-postgresql</artifactId>-->
+<!--                </dependency>-->
             </dependencies>
         </profile>
         <profile>
